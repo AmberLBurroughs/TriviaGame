@@ -185,7 +185,8 @@ var gameState ={
 		this.incorrectlyAnswer = 0;
 		this.unanswered = 0;
 		this.totalAnswered = 0;
-		timer.number = 0;
+		timer.number = 10;
+		$("#finish").empty();
 		$(".content-container").remove();
 		$(".toggle, #finish").addClass("hide");
 		$("#home").removeClass("hide");
