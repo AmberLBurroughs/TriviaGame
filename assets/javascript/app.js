@@ -139,7 +139,7 @@ var gameState ={
 		$(".top-footer").addClass("hide");
 		$("#finish").removeClass("hide");
 		gameState.endGameHTML();
-		bindNewGameClick();
+		gameState.bindNewGameClick();
 		}, 2000);
 	},
 
