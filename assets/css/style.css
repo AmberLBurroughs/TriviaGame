@@ -171,6 +171,10 @@ p{
 }
 .rgt .content-container {
 	float: right;
+	width: 55%;
+}
+.message-container {
+	margin-bottom: 2%;
 }
 .rgt .content-container > p, .lft .content-container > p{
 	background-color: #000;

@@ -43,12 +43,8 @@ var gameState ={
 		sectionQuestion.innerText = questionObject.question;
 		sectionHTML.appendChild(sectionQuestion);
 
-		var timerContainer = document.createElement('div');
-		timerContainer.className = "timer-container";
-		var timerText = document.createElement('p');
-		timerText.innerText = timer.number;
-		timerContainer.appendChild(timerText);
-		sectionHTML.appendChild(timerContainer);
+		var questionTimer = timer.timerHTML()
+		sectionHTML.appendChild(questionTimer);
 
 		var messageContainer = document.createElement('div');
 		messageContainer.className = "message-container";
@@ -118,7 +114,7 @@ var gameState ={
 			// render question in the intended div
 			// do whatever animation/logic to show that question
 			// bind all the events for the new HTML
-		}, 5000);  /// not sure how long need
+		}, 10000);  /// not sure how long need
 	},
 
 	iterateAnswered: function(){
@@ -133,6 +129,7 @@ var gameState ={
 		this.totalAnswered = 0;
 		timer.number = 0;
 		$(".content-container").delete();
+		$(".top-footer").addClass("hide");
 	}
 }
 
@@ -140,11 +137,22 @@ var gameState ={
 var timer = {
 	intervalId: null,
 	number: 10,
+
+	timerHTML: function() {
+		var timerContainer = document.createElement('div');
+		timerContainer.className = "timer-container";
+		var timerText = document.createElement('p');
+		timerText.innerText = timer.number;
+		timerContainer.appendChild(timerText);
+		return timerContainer
+	},
+
 	startTimer: function(){
 		if(gameState.totalAnswered === 0){
 			$("#start-game").on("click", function(){
 				gameState.renderCurrentQuestion();
 				$("#home").addClass("hide");
+				$(".top-footer").removeClass("hide");
 				run();
 			});
 		}else {
