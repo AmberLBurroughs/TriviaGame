@@ -48,6 +48,9 @@ var gameState ={
 		sectionQuestion.innerText = questionObject.question;
 		sectionHTML.appendChild(sectionQuestion);
 
+		var messageContainer = document.createElement('div');
+		messageContainer.className = "message-container";
+		sectionHTML.appendChild(messageContainer);
 		//console.log(sectionHTML);
 		for(var i = 0;i<questionObject.answers.length; i++){
 			//console.log("answer array length: " + questionObject.answers.length);
@@ -75,13 +78,24 @@ var gameState ={
 		if(chosenAnswer === questionAnswers[2].correctAnswer){
 			this.correctlyAnswered++;
 			this.iterateAnswered();
+			var correctAnserWrap = $("<div>");
+			correctAnserWrap.addClass("answer-txt");
+			var correctAnserTxt = $("<h4>");
+			correctAnserTxt.text("Nice! " + questionAnswers[2].correctAnswer + " is the right answer.");
+			$(correctAnserWrap).append(correctAnserTxt);
+			$(".message-container").append(correctAnserWrap);
 			this.showNextQuestion();
 			console.log("right");
 			console.log("correct: " + this.correctlyAnswered);
-			// coreect text
 		} else if(chosenAnswer != questionAnswers[2].correctAnswer) {
 			this.incorrectlyAnswer++;
 			this.iterateAnswered();
+			var incorrectAnserWrap = $("<div>");
+			incorrectAnserWrap.addClass("answer-txt");
+			var incorrectAnserTxt = $("<h4>");
+			incorrectAnserTxt.text("uh oh! " + questionAnswers[2].correctAnswer + " is the right answer.");
+			$(incorrectAnserWrap).append(incorrectAnserTxt);
+			$(".message-container").append(incorrectAnserWrap);
 			this.showNextQuestion();
 			// incorrect text
 			console.log("wrong");
@@ -90,8 +104,8 @@ var gameState ={
 	},
 
 	showNextQuestion: function(){
-		$("#sec" + this.totalAnswered).addClass("hide");
 		setTimeout(function(){
+			$("#sec" + this.totalAnswered).addClass("hide");
 			// get HTML for next question
 			gameState.renderCurrentQuestion();
 			// timer.startTimer();
