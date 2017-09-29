@@ -45,7 +45,7 @@ var gameState ={
 		timerContainer.appendChild(timerText);
 		sectionHTML.appendChild(timerContainer);
 
-		var sectionQuestion = document.createElement('h3');
+		var sectionQuestion = document.createElement('p');
 		sectionQuestion.innerText = questionObject.question;
 		sectionHTML.appendChild(sectionQuestion);
 
@@ -158,7 +158,7 @@ var timer = {
 	  		gameState.iterateAnswered();
 	  		// console.log("unanswered question: " + gameState.unanswered);
 		    timer.stop();
-		    $(".content-container > h3, .btn").addClass("hide");
+		    $(".content-container > p, .btn").addClass("hide");
 		    var noAnserWrap = $("<div>");
 		    noAnserWrap.addClass("answer-txt");
 			var noAnserTxt = $("<h4>");
