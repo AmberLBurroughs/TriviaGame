@@ -139,6 +139,7 @@ var gameState ={
 		$(".top-footer").addClass("hide");
 		$("#finish").removeClass("hide");
 		endGameHTML();
+		bindNewGameClick();
 		}, 2000);
 	},
 
@@ -173,6 +174,12 @@ var gameState ={
 		$("#finish").append(endGameBox);
 	},
 
+	bindNewGameClick: function(){
+		$(".play-again-btn").on("click", function(){
+			resetgame();
+		});
+	},
+
 	resetgame: function(){
 		this.correctlyAnswered = 0;
 		this.incorrectlyAnswer = 0;
@@ -180,7 +187,8 @@ var gameState ={
 		this.totalAnswered = 0;
 		timer.number = 0;
 		$(".content-container").delete();
-		$(".toggle").addClass("hide");
+		$(".toggle, #finish").addClass("hide");
+		$("#home").removeClass("hide");
 		$(".top-footer").addClass("hide");
 	}
 }
