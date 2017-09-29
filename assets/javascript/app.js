@@ -41,6 +41,7 @@ var gameState ={
 		var timerContainer = document.createElement('div');
 		timerContainer.className = "timer-container";
 		var timerText = document.createElement('p');
+		timerText.innerText = timer.number;
 		timerContainer.appendChild(timerText);
 		sectionHTML.appendChild(timerContainer);
 
@@ -108,7 +109,7 @@ var gameState ={
 			$("#sec" + this.totalAnswered).addClass("hide");
 			// get HTML for next question
 			gameState.renderCurrentQuestion();
-			// timer.startTimer();
+			timer.startTimer();
 			// render question in the intended div
 			// do whatever animation/logic to show that question
 			// bind all the events for the new HTML
