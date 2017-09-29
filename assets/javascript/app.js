@@ -89,8 +89,8 @@ var gameState ={
 			$(".message-container").append(correctAnserWrap);
 			
 			
-			console.log("right");
-			console.log("correct: " + this.correctlyAnswered);
+			// console.log("right");
+			// console.log("correct: " + this.correctlyAnswered);
 		} else if(chosenAnswer != currentQuestion.correctAnswer) {
 			this.incorrectlyAnswer++;
 			this.iterateAnswered();
@@ -105,8 +105,8 @@ var gameState ={
 			$(".message-container").append(incorrectAnserWrap);
 			
 			// incorrect text
-			console.log("wrong");
-			console.log("incorrect: " + this.incorrectlyAnswer);
+			// console.log("wrong");
+			// console.log("incorrect: " + this.incorrectlyAnswer);
 		}
 
 		if(this.totalAnswered != questionAnswers.length){
@@ -130,24 +130,32 @@ var gameState ={
 
 	iterateAnswered: function(){
 		totalAnswered = this.incorrectlyAnswer + this.correctlyAnswered + this.unanswered;
-		console.log("total answered: " + totalAnswered);
+		// console.log("total answered: " + totalAnswered);
 	},
+	
 	endGame: function() {
+		setTimeout(function(){
 		$(".toggle").addClass("hide");
+		$(".top-footer").addClass("hide");
 		$("#finish").removeClass("hide");
-		$("#finish").removeClass("hide");
+		endGameHTML();
+		}, 2000);
+	},
+
+	endGameHTML: function () {
 		var endGamescore = $("<div>");
 		endGamescore.addClass("split end-game-data");
 		var endGameheader = $("<h4>");
 		endGameheader.text("Final Score");
 		var endGameData1 = $("<p>");
-		endGameData1.text("correct answers: " + this.correctlyAnswered);
+		endGameData1.text("correct answers: " + gameState.correctlyAnswered);
 		var endGameData2 = $("<p>");
-		endGameData2.text("incorrect answers: " + this.incorrectlyAnswer);
+		endGameData2.text("incorrect answers: " + gameState.incorrectlyAnswer);
 		var endGameData3 = $("<p>");
-		endGameData3.text("unanswered questions: " + this.unanswered);
+		endGameData3.text("unanswered questions: " + gameState.unanswered);
 		endGamescore.append(endGameheader, endGameData1, endGameData2, endGameData3);
 		var playAginBtn = $("button");
+		playAginBtn.addClass("play-again-btn");
 		playAginBtn.text("play again");
 		endGamescore.append(playAginBtn);
 		$("#finish").append(endGamescore);
@@ -210,7 +218,7 @@ var timer = {
 
 	decrement: function(){
 	  	timer.number--;
-	  	console.log(timer.number);
+	  	// console.log(timer.number);
 	  	$(".timer-container > p").text(timer.number);
 	  	if(timer.number == 0) {
 	  		if(gameState.totalAnswered === questionAnswers.length){
