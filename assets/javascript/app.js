@@ -2,19 +2,19 @@
 
 var questionAnswers = [
 	{
-		question: "question A",
-		answers: ["Aa", "Ab", "Ac"],
-		correctAnswer: "Ab"
+		question: "What is honey bunches of oats official slogan?",
+		answers: ["One spoonful is all it takes", "Taste the joy in every spoonful", "It's what's for breakfast", "Just eat this"],
+		correctAnswer: "Taste the joy in every spoonful"
 	},
 	{
 		question: "question B",
-		answers: ["Ba", "Bb", "Bc"],
-		correctAnswer: "Bc"
+		answers: ["Cookie Crisp", "Birthday Breakfast", "Smorz", "Brownie Crunch"],
+		correctAnswer: "Birthday Breakfast"
 	},
 	{
-		question: "question C",
-		answers: ["Ca", "Cb", "Cc"],
-		correctAnswer: "Ca",
+		question: "How many years was frexh toast crunch discontinued",
+		answers: ["1 Year", "3 Years", "9 Years", "12 Years"],
+		correctAnswer: "9 Years",
 	},
 ];
 
@@ -38,16 +38,16 @@ var gameState ={
 		var sectionHTML = document.createElement('div');
 		sectionHTML.className = "content-container";
 
+		var sectionQuestion = document.createElement('p');
+		sectionQuestion.innerText = questionObject.question;
+		sectionHTML.appendChild(sectionQuestion);
+
 		var timerContainer = document.createElement('div');
 		timerContainer.className = "timer-container";
 		var timerText = document.createElement('p');
 		timerText.innerText = timer.number;
 		timerContainer.appendChild(timerText);
 		sectionHTML.appendChild(timerContainer);
-
-		var sectionQuestion = document.createElement('p');
-		sectionQuestion.innerText = questionObject.question;
-		sectionHTML.appendChild(sectionQuestion);
 
 		var messageContainer = document.createElement('div');
 		messageContainer.className = "message-container";
@@ -60,6 +60,7 @@ var gameState ={
 			sectionAnswers.innerText = questionObject.answers[i];
 			sectionHTML.appendChild(sectionAnswers);
 		}
+
 		return sectionHTML;
 	},
 
@@ -67,34 +68,37 @@ var gameState ={
 		$(".btn").on("click", function(){
 			timer.stop();
 			var chosenAnswer = $(this).text();
+			var currentQuestion = questionAnswers[gameState.totalAnswered];
 			gameState.totalAnswered++;
 			// console.log(chosenAnswer);
 			// console.log(questionAnswers[2].correctAnswer);
-			gameState.validateAnswer(chosenAnswer);
+			gameState.validateAnswer(chosenAnswer, currentQuestion);
 
 		});
 	},
-
-	validateAnswer: function(chosenAnswer) {
-		if(chosenAnswer === questionAnswers[2].correctAnswer){
+	// refactor
+	validateAnswer: function(chosenAnswer, currentQuestion) {
+		if(chosenAnswer === currentQuestion.correctAnswer){
 			this.correctlyAnswered++;
 			this.iterateAnswered();
+			$(".content-container > p, .btn").addClass("hide");
 			var correctAnserWrap = $("<div>");
 			correctAnserWrap.addClass("answer-txt");
 			var correctAnserTxt = $("<h4>");
-			correctAnserTxt.text("Nice! " + questionAnswers[2].correctAnswer + " is the right answer.");
+			correctAnserTxt.text("Nice! " + currentQuestion.correctAnswer + " is the right answer.");
 			$(correctAnserWrap).append(correctAnserTxt);
 			$(".message-container").append(correctAnserWrap);
 			this.showNextQuestion();
 			console.log("right");
 			console.log("correct: " + this.correctlyAnswered);
-		} else if(chosenAnswer != questionAnswers[2].correctAnswer) {
+		} else if(chosenAnswer != currentQuestion.correctAnswer) {
 			this.incorrectlyAnswer++;
 			this.iterateAnswered();
+			$(".content-container > p, .btn").addClass("hide");
 			var incorrectAnserWrap = $("<div>");
 			incorrectAnserWrap.addClass("answer-txt");
 			var incorrectAnserTxt = $("<h4>");
-			incorrectAnserTxt.text("uh oh! " + questionAnswers[2].correctAnswer + " is the right answer.");
+			incorrectAnserTxt.text("uh oh! " + currentQuestion.correctAnswer + " is the right answer.");
 			$(incorrectAnserWrap).append(incorrectAnserTxt);
 			$(".message-container").append(incorrectAnserWrap);
 			this.showNextQuestion();
@@ -103,7 +107,6 @@ var gameState ={
 			console.log("incorrect: " + this.incorrectlyAnswer);
 		}
 	},
-
 
 	showNextQuestion: function(){
 		setTimeout(function(){
@@ -114,14 +117,22 @@ var gameState ={
 			// render question in the intended div
 			// do whatever animation/logic to show that question
 			// bind all the events for the new HTML
-		}, 2000);  /// not sure how long need
+		}, 5000);  /// not sure how long need
 	},
 
-	iterateAnswered: function() {
+	iterateAnswered: function(){
 		totalAnswered = this.incorrectlyAnswer + this.correctlyAnswered + this.unanswered;
 		console.log("total answered: " + totalAnswered);
-	}
+	},
 
+	resetgame: function(){
+		this.correctlyAnswered = 0;
+		this.incorrectlyAnswer = 0;
+		this.unanswered = 0;
+		this.totalAnswered = 0;
+		timer.number = 0;
+		$(".content-container").delete();
+	}
 }
 
 // timer
@@ -153,19 +164,20 @@ var timer = {
 	  		only increment unanswered if the current question has not been answered (make sure to not count this as 
 	  			an unanswered question if the timer hits 0 while you're showing the correct/incorrect HTML and they've already guessed).
 	  		*/ // 
+	  		$(".content-container > p, .btn").addClass("hide");
+		    var noAnserWrap = $("<div>");
+		    noAnserWrap.addClass("answer-txt");
+			var noAnserTxt = $("<h4>");
+			var currentQuestion = questionAnswers[gameState.totalAnswered];
+			noAnserTxt.text("Uh Oh! You didn't answer in time. The correct anser was " + currentQuestion.correctAnswer);
+			$(noAnserWrap).append(noAnserTxt);
+			$(".message-container").append(noAnserWrap);
 	  		gameState.unanswered++;
 	  		gameState.totalAnswered++;
 	  		gameState.iterateAnswered();
 	  		// console.log("unanswered question: " + gameState.unanswered);
 		    timer.stop();
-		    $(".content-container > p, .btn").addClass("hide");
-		    var noAnserWrap = $("<div>");
-		    noAnserWrap.addClass("answer-txt");
-			var noAnserTxt = $("<h4>");
-			noAnserTxt.text("Uh Oh! You didn't answer in time. The correct anser was " + questionAnswers[2].correctAnswer );
-			$(noAnserWrap).append(noAnserTxt);
-			$(".message-container").append(noAnserWrap);
-		    gameState.showNextQuestion(); //runs on a timeout:
+		    gameState.showNextQuestion();
 	  	}
 	},
 
