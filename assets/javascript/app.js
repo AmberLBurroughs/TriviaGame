@@ -12,7 +12,7 @@ var questionAnswers = [
 		correctAnswer: "Birthday Breakfast"
 	},
 	{
-		question: "How many years was frexh toast crunch discontinued",
+		question: "How many years was frech toast crunch discontinued",
 		answers: ["1 Year", "3 Years", "9 Years", "12 Years"],
 		correctAnswer: "9 Years",
 	},
@@ -132,7 +132,7 @@ var gameState ={
 		totalAnswered = this.incorrectlyAnswer + this.correctlyAnswered + this.unanswered;
 		// console.log("total answered: " + totalAnswered);
 	},
-	
+
 	endGame: function() {
 		setTimeout(function(){
 		$(".toggle").addClass("hide");
