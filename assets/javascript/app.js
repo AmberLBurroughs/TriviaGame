@@ -155,7 +155,7 @@ var gameState ={
 		var endGameData3 = $("<p>");
 		endGameData3.text("unanswered questions: " + gameState.unanswered);
 		endGamescore.append(endGameheader, endGameData1, endGameData2, endGameData3);
-		var playAginBtn = $("button");
+		var playAginBtn = $("<button>");
 		playAginBtn.addClass("play-again-btn");
 		playAginBtn.text("play again");
 		endGamescore.append(playAginBtn);
