@@ -7,7 +7,7 @@ var questionAnswers = [
 		correctAnswer: "Taste the joy in every spoonful"
 	},
 	{
-		question: "question B",
+		question: "Which of these was not an actual cereal based of a popular baked good?",
 		answers: ["Cookie Crisp", "Birthday Breakfast", "Smorz", "Brownie Crunch"],
 		correctAnswer: "Birthday Breakfast"
 	},
@@ -30,7 +30,8 @@ var gameState ={
 		var triviaHTML = gameState.createQuestionHTML(questionObject);
 
 		$("#sec" + (this.totalAnswered+1)).removeClass("hide").append(triviaHTML);
-
+		$(".counter").removeClass("enLrg");
+		$("#counter" +this.totalAnswered).addClass("enLrg");
 		gameState.bindAnswerClicks();
 	},
 	

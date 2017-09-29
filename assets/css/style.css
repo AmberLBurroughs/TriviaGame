@@ -145,7 +145,7 @@ p{
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
 	width: 75%;
-	margin: 0 auto;
+	margin: 10px auto;
 	border-radius: 20px;
 	z-index: 10;
 	position: relative;
@@ -196,13 +196,62 @@ p{
   display: table;
   clear: both;
 }
+#finish {
+	 display: -webkit-flex; /* Safari */
+    display: flex;
+}
+.end-game-data {
+	background-color: #000;
+	color: #fff;
+	padding: 10% 0;
+}
+.end-game-data button {
+	background-color: transparent;
+	color: #EFEFEF;
+	border: 1px solid #EFEFEF;
+	width: 100%;
+	max-width: 400px;
+	margin: 5px 0;
+	font-family: 'Raleway', sans-serif;
+	padding: 10px 0;
+	text-transform: uppercase;
+}
+.split{
+	width: 50%;
+	float: left;
+	-webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+}
+.boxes {
+	background: url(../images/Cereal-Boxes.jpg) no-repeat;
+	text-align: left;
+}
+.boxes-wrap {
+	padding: 10% 0;
+	background-color: rgba(255,255,255,.6); 
+	-webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+}
+.boxes-wrap > h1 {
+	margin-left: -20px;
+	line-height: 0.6;
+}
 footer {
 	text-align: center;
+}
+.bottom-footer {
+	height: 75px;
 	background: url(../images/footer.png) no-repeat;
 }
 
 footer h3 {
-	margin: 0 3%;
+	margin: 0 5%;
+	line-height: 0.3;
+}
+footer .enLrg {
+	font-size: 20em;
 }
 @media only screen and (min-width: 1200px) {
 .header {
@@ -237,6 +286,9 @@ h1 {
 	h1 {
 	font-size: 11em;
 }
+.boxes-wrap > h1 {
+	margin-left: -10px;
+}
 }
 @media only screen and (max-width:600px) {
 	.header {
@@ -245,9 +297,19 @@ h1 {
 	h1 {
 		font-size: 7em;
 	}
-.header img {
-	max-height: 50px;
-}
+	.header img {
+		max-height: 50px;
+	}
+	#finish {
+		display: inline-block;
+	}
+	.split {
+		width: 100%;
+	}
+	.boxes-wrap > h1 {
+		margin-left: 0;
+	}
+
 }
 @media only screen and (max-width: 400px) {
 	.header {
@@ -261,5 +323,14 @@ h1 {
 }
 .start-wrap{
 	width: 85%;
+}
+#finish {
+	display: inline-block;
+}
+.split {
+	width: 100%;
+}
+.boxes-wrap > h1 {
+	margin-left: 0;
 }
 }
