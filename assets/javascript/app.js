@@ -104,6 +104,7 @@ var gameState ={
 		}
 	},
 
+
 	showNextQuestion: function(){
 		setTimeout(function(){
 			$("#sec" + this.totalAnswered).addClass("hide");
@@ -155,8 +156,15 @@ var timer = {
 	  		gameState.unanswered++;
 	  		gameState.totalAnswered++;
 	  		gameState.iterateAnswered();
-	  		console.log("unanswered question: " + gameState.unanswered);
+	  		// console.log("unanswered question: " + gameState.unanswered);
 		    timer.stop();
+		    $(".content-container > h3, .btn").addClass("hide");
+		    var noAnserWrap = $("<div>");
+		    noAnserWrap.addClass("answer-txt");
+			var noAnserTxt = $("<h4>");
+			noAnserTxt.text("Uh Oh! You didn't answer in time. The correct anser was " + questionAnswers[2].correctAnswer );
+			$(noAnserWrap).append(noAnserTxt);
+			$(".message-container").append(noAnserWrap);
 		    gameState.showNextQuestion(); //runs on a timeout:
 	  	}
 	},
