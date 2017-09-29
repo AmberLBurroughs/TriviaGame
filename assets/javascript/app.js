@@ -176,7 +176,7 @@ var gameState ={
 
 	bindNewGameClick: function(){
 		$(".play-again-btn").on("click", function(){
-			resetgame();
+			gameState.resetgame();
 		});
 	},
 
