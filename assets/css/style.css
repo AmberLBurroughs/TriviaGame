@@ -8,6 +8,7 @@ body {
 		font-size: 18px;
 		text-align: center;
 		color: #000;
+		overflow-x: hidden;
 }
 .content-wrapper{
 	flex: 1 0 auto;

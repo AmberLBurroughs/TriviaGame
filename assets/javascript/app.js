@@ -73,35 +73,46 @@ var gameState ={
 
 		});
 	},
-	// refactor
+	// refactor smaller functions
 	validateAnswer: function(chosenAnswer, currentQuestion) {
 		if(chosenAnswer === currentQuestion.correctAnswer){
 			this.correctlyAnswered++;
 			this.iterateAnswered();
+			
 			$(".content-container > p, .btn").addClass("hide");
+			
 			var correctAnserWrap = $("<div>");
 			correctAnserWrap.addClass("answer-txt");
 			var correctAnserTxt = $("<h4>");
 			correctAnserTxt.text("Nice! " + currentQuestion.correctAnswer + " is the right answer.");
 			$(correctAnserWrap).append(correctAnserTxt);
 			$(".message-container").append(correctAnserWrap);
-			this.showNextQuestion();
+			
+			
 			console.log("right");
 			console.log("correct: " + this.correctlyAnswered);
 		} else if(chosenAnswer != currentQuestion.correctAnswer) {
 			this.incorrectlyAnswer++;
 			this.iterateAnswered();
+
 			$(".content-container > p, .btn").addClass("hide");
+
 			var incorrectAnserWrap = $("<div>");
 			incorrectAnserWrap.addClass("answer-txt");
 			var incorrectAnserTxt = $("<h4>");
 			incorrectAnserTxt.text("uh oh! " + currentQuestion.correctAnswer + " is the right answer.");
 			$(incorrectAnserWrap).append(incorrectAnserTxt);
 			$(".message-container").append(incorrectAnserWrap);
-			this.showNextQuestion();
+			
 			// incorrect text
 			console.log("wrong");
 			console.log("incorrect: " + this.incorrectlyAnswer);
+		}
+
+		if(this.totalAnswered != questionAnswers.length){
+			this.showNextQuestion();
+		} else {
+			this.endGame();
 		}
 	},
 
@@ -114,7 +125,7 @@ var gameState ={
 			// render question in the intended div
 			// do whatever animation/logic to show that question
 			// bind all the events for the new HTML
-		}, 10000);  /// not sure how long need
+		}, 2000);  /// not sure how long need
 	},
 
 	iterateAnswered: function(){
@@ -122,16 +133,18 @@ var gameState ={
 		console.log("total answered: " + totalAnswered);
 	},
 	endGame: function() {
+		$(".toggle").addClass("hide");
+		$("#finish").removeClass("hide");
 		$("#finish").removeClass("hide");
 		var endGamescore = $("<div>");
-		endGameContainer.addClass("split end-game-data");
+		endGamescore.addClass("split end-game-data");
 		var endGameheader = $("<h4>");
 		endGameheader.text("Final Score");
-		var endGameData1 = $("p");
+		var endGameData1 = $("<p>");
 		endGameData1.text("correct answers: " + this.correctlyAnswered);
-		var endGameData2 = $("p");
+		var endGameData2 = $("<p>");
 		endGameData2.text("incorrect answers: " + this.incorrectlyAnswer);
-		var endGameData3 = $("p");
+		var endGameData3 = $("<p>");
 		endGameData3.text("unanswered questions: " + this.unanswered);
 		endGamescore.append(endGameheader, endGameData1, endGameData2, endGameData3);
 		var playAginBtn = $("button");
@@ -140,16 +153,16 @@ var gameState ={
 		$("#finish").append(endGamescore);
 
 		var endGameBox = $("<div>");
-		endGameBox.className("boxes split");
+		endGameBox.addClass("boxes split");
 		var endGameBoxWrap = $("<div>");
-		endGameBoxWrap.className("boxes-wrap");
+		endGameBoxWrap.addClass("boxes-wrap");
 		var endGameBoxWraphead1 = $("<h1>");
 		endGameBoxWraphead1.text("Cer");
 		var endGameBoxWraphead2 = $("<h1>");
 		endGameBoxWraphead2.text("eal.");
 		endGameBoxWrap.append(endGameBoxWraphead1, endGameBoxWraphead2);
 		endGameBox.append(endGameBoxWrap);
-		$("#finish").append(endGamescore);
+		$("#finish").append(endGameBox);
 	},
 
 	resetgame: function(){
@@ -200,16 +213,12 @@ var timer = {
 	  	console.log(timer.number);
 	  	$(".timer-container > p").text(timer.number);
 	  	if(timer.number == 0) {
-	  		/*
-	  		only increment unanswered if the current question has not been answered (make sure to not count this as 
-	  			an unanswered question if the timer hits 0 while you're showing the correct/incorrect HTML and they've already guessed).
-	  		*/ //
-	  		if(gameState.totalAnswered === 3){
+	  		if(gameState.totalAnswered === questionAnswers.length){
 	  			gameState.unanswered++;
 			    gameState.totalAnswered++;
 			    gameState.iterateAnswered();
 	  			timer.stop();
-	  			endGame();
+	  			gameState.endGame();
 	  		}else{
 	  			$(".content-container > p, .btn").addClass("hide");
 				    var noAnserWrap = $("<div>");
@@ -243,3 +252,5 @@ $(document).ready(function(){
 	timer.startTimer();
 });
 
+// play again button click - reset function call
+// end game screen show after last question
