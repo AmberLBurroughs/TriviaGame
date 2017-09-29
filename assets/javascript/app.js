@@ -267,6 +267,3 @@ var timer = {
 $(document).ready(function(){
 	timer.startTimer();
 });
-
-// play again button click - reset function call
-// end game screen show after last question
