@@ -16,7 +16,7 @@ body {
 }
 .content-container > p {
 	background-color: #000;
-	width: 40%;
+	width: 60%;
 	color: #EFEFEF;
 	padding: 20px;
 	margin:0 auto;
@@ -170,25 +170,21 @@ p{
     margin-top: 2%;
     margin-right: 10px;
 }
+.content-container {
+	width: 50%;
+	margin: 0 auto;
+}
 .rgt .content-container {
 	float: right;
-	width: 50%;
+	margin: 0;
 }
 .message-container {
 	margin-bottom: 2%;
 }
-.rgt .content-container > p, .lft .content-container > p{
-	background-color: #000;
-	width: 60%;
-	color: #EFEFEF;
-	padding: 20px;
-	margin:0 auto;
-}
-.img-left-bg {
-    width: 35%;
-    float: left;
-    margin-top: 2%;
-    margin-left: 10px;
+.img-lft-bg {
+   	float: left;
+    padding-top: 10%;
+    margin-left: 10%;
 }
 .lft .content-container {
 	float: left;
@@ -223,6 +219,7 @@ p{
 }
 #sec2 {
 	background: url(../images/BakedCereal.png) no-repeat right center;
+	min-height: 400px;
 
 }
 .split{
