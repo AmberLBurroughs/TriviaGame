@@ -12,6 +12,7 @@ body {
 }
 .content-wrapper{
 	flex: 1 0 auto;
+	z-index: 2;
 }
 .content-container > p {
 	background-color: #000;
@@ -57,7 +58,6 @@ p{
     border-radius: 0;
     font-size: 18px;
     padding: 10px 0;
-    font-weight: 900;
 }
 .header {
 	position: relative;
@@ -245,6 +245,7 @@ p{
 }
 footer {
 	text-align: center;
+	z-index: 1;
 }
 .bottom-footer {
 	height: 75px;

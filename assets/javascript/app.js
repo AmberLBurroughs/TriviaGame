@@ -230,30 +230,25 @@ var timer = {
 	  	// console.log(timer.number);
 	  	$(".timer-container > p").text(timer.number);
 	  	if(timer.number == 0) {
-	  		if(gameState.totalAnswered === questionAnswers.length){
-	  			gameState.unanswered++;
-			    gameState.totalAnswered++;
-			    gameState.iterateAnswered();
-	  			timer.stop();
+	  		timer.stop();
+  			gameState.unanswered++;
+		    gameState.totalAnswered++;
+		  	gameState.iterateAnswered();
+
+	  		if(gameState.totalAnswered === questionAnswers.length){	  			
 	  			gameState.endGame();
 	  		}else{
 	  			$(".content-container > p, .btn").addClass("hide");
-				    var noAnserWrap = $("<div>");
-				    noAnserWrap.addClass("answer-txt");
-					var noAnserTxt = $("<h4>");
-					var currentQuestion = questionAnswers[gameState.totalAnswered];
-					noAnserTxt.text("Uh Oh! You didn't answer in time. The correct anser was " + currentQuestion.correctAnswer);
-					$(noAnserWrap).append(noAnserTxt);
-					$(".message-container").append(noAnserWrap);
+				var noAnserWrap = $("<div>");
+				noAnserWrap.addClass("answer-txt");
+				var noAnserTxt = $("<h4>");
+				var currentQuestion = questionAnswers[gameState.totalAnswered];
+				noAnserTxt.text("Uh Oh! You didn't answer in time. The correct anser was " + currentQuestion.correctAnswer);
+				$(noAnserWrap).append(noAnserTxt);
+				$(".message-container").append(noAnserWrap);
 
-			  		gameState.unanswered++;
-			  		gameState.totalAnswered++;
-
-			  		gameState.iterateAnswered();
-			  		// console.log("unanswered question: " + gameState.unanswered);
-				    timer.stop();
-				    gameState.showNextQuestion();
-
+			  	// console.log("unanswered question: " + gameState.unanswered);
+				gameState.showNextQuestion();
 	  		}
 
 	  	}
