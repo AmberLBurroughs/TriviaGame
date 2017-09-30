@@ -140,7 +140,7 @@ var gameState ={
 		$("#finish").removeClass("hide");
 		gameState.endGameHTML();
 		gameState.bindNewGameClick();
-		}, 5000);
+		}, 4000);
 	},
 
 	endGameHTML: function () {
@@ -185,19 +185,20 @@ var gameState ={
 		this.incorrectlyAnswer = 0;
 		this.unanswered = 0;
 		this.totalAnswered = 0;
-		timer.number = 10;
+		timer.number = 30;
 		$("#finish").empty();
 		$(".content-container").remove();
 		$(".toggle, #finish").addClass("hide");
 		$("#home").removeClass("hide");
-		$(".top-footer").addClass("hide");
+		$(".counter").removeClass("enLrg");
+		$(".top-footer").removeClass("hide");
 	}
 }
 
 // timer
 var timer = {
 	intervalId: null,
-	number: 100,
+	number: 30,
 
 	timerHTML: function() {
 		var timerContainer = document.createElement('div');
@@ -213,7 +214,6 @@ var timer = {
 			$("#start-game").on("click", function(){
 				gameState.renderCurrentQuestion();
 				$("#home").addClass("hide");
-				$(".top-footer").removeClass("hide");
 				run();
 			});
 		}else {
@@ -256,7 +256,7 @@ var timer = {
 
 	stop: function(){
 		clearInterval(timer.intervalId);
-		this.number = 100;
+		this.number = 30;
 	}
 } 
 
