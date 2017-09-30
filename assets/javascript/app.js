@@ -140,7 +140,7 @@ var gameState ={
 		$("#finish").removeClass("hide");
 		gameState.endGameHTML();
 		gameState.bindNewGameClick();
-		}, 2000);
+		}, 5000);
 	},
 
 	endGameHTML: function () {
@@ -197,7 +197,7 @@ var gameState ={
 // timer
 var timer = {
 	intervalId: null,
-	number: 10,
+	number: 100,
 
 	timerHTML: function() {
 		var timerContainer = document.createElement('div');
@@ -256,7 +256,7 @@ var timer = {
 
 	stop: function(){
 		clearInterval(timer.intervalId);
-		this.number = 10;
+		this.number = 100;
 	}
 } 
 

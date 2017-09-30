@@ -16,7 +16,7 @@ body {
 }
 .content-container > p {
 	background-color: #000;
-	width: 30%;
+	width: 40%;
 	color: #EFEFEF;
 	padding: 20px;
 	margin:0 auto;
@@ -172,14 +172,14 @@ p{
 }
 .rgt .content-container {
 	float: right;
-	width: 55%;
+	width: 50%;
 }
 .message-container {
 	margin-bottom: 2%;
 }
 .rgt .content-container > p, .lft .content-container > p{
 	background-color: #000;
-	width: 100%;
+	width: 60%;
 	color: #EFEFEF;
 	padding: 20px;
 	margin:0 auto;
@@ -220,6 +220,10 @@ p{
 	font-family: 'Raleway', sans-serif;
 	padding: 10px 0;
 	text-transform: uppercase;
+}
+#sec2 {
+	background: url(../images/BakedCereal.png) no-repeat right center;
+
 }
 .split{
 	width: 50%;
