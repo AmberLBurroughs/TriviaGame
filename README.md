@@ -1,4 +1,4 @@
-# TriviaGame
+# oat out time
 Trivia game using JavaScript for the logic and jQuery to manipulate HTML.
 <img src="/assets/images/poster.jpg?raw=true">
 ## Getting Started
