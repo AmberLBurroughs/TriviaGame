@@ -1,4 +1,4 @@
-# oat out time
+# are you cereal
 Trivia game using JavaScript for the logic and jQuery to manipulate HTML.
 <img src="/assets/images/poster.jpg?raw=true">
 ## Getting Started
